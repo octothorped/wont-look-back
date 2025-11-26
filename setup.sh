@@ -3,7 +3,10 @@
 # Globally installs required tools
 mise use -g fzf ripgrep fd
 
-# Creates symlinks from repo into expected default neovim config
+# TODO: figure out how to install nerd fonts automatically
+# TODO: figure out how to install neovim automatically
+
+# Creates symlinks from repo into expected default neovim config. This was taken from adamtmorgan.
 SCRIPT_DIR="$(dirname "$(realpath "$0")")" # path for script directory
 
 # Links a source to a destination and handles edge cases
@@ -13,7 +16,7 @@ function try_link() {
     destinationPath=$3
     echo "Attempting to link $sourcePath to $destinationPath"
 
-    if [ ! -f "$sourcePath" ]; then
+    if [ ! -d "$sourcePath" ]; then
         echo "Config for $configName not found."
     elif [ ! -e "$destinationPath" ]; then
         ln -s "$sourcePath" "$destinationPath"
