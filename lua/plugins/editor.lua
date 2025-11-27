@@ -1,20 +1,8 @@
 return {
     {
         "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
         ---@type snacks.Config
         opts = {
-            dashboard = {
-                enabled = true,
-                sections = {
-                    { section = "header" },
-                    { section = "keys", gap = 1, padding = 1 },
-                    { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-                    { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-                    { section = "startup" },
-                },
-            },
             explorer = { enabled = true },
             lazygit = { enabled = true },
             terminal = { enabled = true },
@@ -40,9 +28,7 @@ return {
             { "<c-/>", function() Snacks.terminal() end, desc = "Terminal (Root Dir)", mode = { "n", "t" } },
             { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
             { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-            { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
             { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-            { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
             { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
             {
                 "<leader>fc",
@@ -53,6 +39,40 @@ return {
             { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
             { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
             { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
+
+            -- Quickfix
+            { "<c-q>", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+            { "[q", ":cprev<CR>", desc = "Prev Quickfix", mode = { "n" } },
+            { "]q", ":cnext<CR>", desc = "Next Quickfix", mode = { "n" } },
+
+            -- Diagnostic keymaps
+            { "<leader>fd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+
+            { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+            { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+            { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+            { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+            { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto Type Definition" },
         },
+    },
+    -- Shows git signs in editor
+    {
+        "lewis6991/gitsigns.nvim",
+        config = function() require("gitsigns").setup() end,
+    },
+    {
+        "nmac427/guess-indent.nvim",
+        config = function() require("guess-indent").setup({}) end,
+    },
+    -- For highlighting todo, fix and other tags in comments
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {},
+    },
+    {
+        "nvim-mini/mini.nvim",
+        version = "*",
+        config = function() require("mini.pairs").setup() end,
     },
 }
