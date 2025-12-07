@@ -1,0 +1,21 @@
+format = '$directory$git_branch$git_state $fill $all$character'
+add_newline = true
+
+[fill]
+symbol = '-'
+style = 'bold bright-cyan'
+
+[battery]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_status]
+disabled = true
+
+[package]
+disabled = true

@@ -3,7 +3,7 @@
 echo "Installing tools"
 
 # nice cli stuff
-sudo pacman -S --noconfirm --needed ripgrep fzf eza
+sudo pacman -S --noconfirm --needed ripgrep fzf eza man
 
 # Git stuff
 sudo pacman -S --noconfirm --needed git github-cli lazygit
@@ -15,5 +15,13 @@ sudo pacman -S --noconfirm --needed docker lazydocker
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
 sudo usermod -aG docker $USER
+sudo pacman -S --noconfirm --needed docker-compose
 
 echo "Completed installing tools"
+
+echo "Installing languages"
+
+sudo pacman -S --noconfirm --needed mise
+mise use -g node@20 go
+
+echo "Completed installing languages"

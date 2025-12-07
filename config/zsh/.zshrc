@@ -14,8 +14,10 @@ fi;
 # alias
 source $HOME/.config/zsh/.zsh-alias
 
-# fzf override for ctr+r
-FZF_CTRL_R_COMMAND=""
+# mise activation
+eval "$(mise activate zsh)"
+
+# fzf integration
 source <(fzf --zsh)
 
 eval "$(starship init zsh)"
