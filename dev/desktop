@@ -17,7 +17,7 @@ cp -r config/hypr $HOME/.config
 rm -rf $HOME/.config/wallpaper
 cp -r config/wallpaper $HOME/.config
 
-sudo pacman -S --noconfirm --needed xg mako rofi waybar
+sudo pacman -S --noconfirm --needed mako rofi waybar
 rm -rf $HOME/.config/rofi
 cp -r config/rofi $HOME/.config
 rm -rf $HOME/.config/waybar
